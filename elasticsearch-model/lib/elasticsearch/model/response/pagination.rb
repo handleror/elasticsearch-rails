@@ -44,22 +44,20 @@ module Elasticsearch
           # Returns the current "limit" (`size`) value
           #
           def limit_value
-            case
-              when search.definition[:size]
-                search.definition[:size]
-              else
-                __default_per_page
+            if search.definition[:size]
+              search.definition[:size]
+            else 
+              __default_per_page
             end
           end
 
           # Returns the current "offset" (`from`) value
           #
           def offset_value
-            case
-              when search.definition[:from]
-                search.definition[:from]
-              else
-                0
+            if search.definition[:from]
+              search.definition[:from]
+            else
+              0
             end
           end
 
